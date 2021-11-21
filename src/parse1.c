@@ -6,7 +6,7 @@
 /*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 17:11:56 by namhkim           #+#    #+#             */
-/*   Updated: 2021/11/19 17:49:56 by namhkim          ###   ########.fr       */
+/*   Updated: 2021/11/21 17:31:48 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	check_map_component(char *line)
 	return (1);
 }
 
-static int	check_type(char *line)
+int	check_type(char *line)
 {
 	if (line[0] == 'R' && line[1] == ' ')
 		return (C_R);
@@ -68,7 +68,7 @@ static int	check_type(char *line)
 	return (-1);
 }
 
-static int	is_blank_line(char *line)
+int	is_blank_line(char *line)
 {
 	int		i;
 
@@ -93,7 +93,7 @@ int	parse_config(t_game *game, t_config *config, char const *conf_path)
 		return (exit_error(game, EXIT_FAILURE, "ERROR\nWRONG FILE PATH\n"));
 	g_ret = 1;
 	g_ret = get_next_line(g_fd, &line);
-	process_except(&g_ret, &line, &game, &config);
+	process_except(&g_ret, line, game, config);
 	close(g_fd);
 	return (1);
 }
