@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: junseole <junseole@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:58:07 by namhkim           #+#    #+#             */
-/*   Updated: 2021/11/19 16:58:40 by namhkim          ###   ########.fr       */
+/*   Updated: 2021/11/21 16:29:32 by junseole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	cast_all_rays(t_game *game)
 
 	ray = malloc(sizeof(t_ray) * game->config.width + 1);
 	if (!ray)
-		return (NULL);
+		return ;
 	rayangle = game->player.rotationangle - (game->config.fov / 2);
 	id = -1;
 	while (++id < game->config.width)

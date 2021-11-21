@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: junseole <junseole@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 17:20:05 by namhkim           #+#    #+#             */
-/*   Updated: 2021/11/19 17:20:07 by namhkim          ###   ########.fr       */
+/*   Updated: 2021/11/21 16:16:23 by junseole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	is_wall(double x, double y, t_game *game)
 	if (gridx <= 0 || gridx >= game->config.colums
 		|| gridy <= 0 || gridy >= game->config.rows)
 		return (1);
-	else if (game->config.map[gridy][gridx] == '1' ||
-			game->config.map[gridy][gridx] == ' ' ||
-			game->config.map[gridy][gridx] == '\0')
+	else if (game->config.map[gridy][gridx] == '1'
+		|| game->config.map[gridy][gridx] == ' '
+		|| game->config.map[gridy][gridx] == '\0')
 		return (1);
 	return (0);
 }
