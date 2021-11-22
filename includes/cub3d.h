@@ -6,7 +6,7 @@
 /*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 15:32:10 by junseole          #+#    #+#             */
-/*   Updated: 2021/11/21 17:31:03 by namhkim          ###   ########.fr       */
+/*   Updated: 2021/11/22 16:52:01 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,7 +258,9 @@ void			copy_pos(t_pos *pos, t_pos *org);
 */
 
 int				is_blank_line(char *line);
-int				check_type(char *line);
+int				is_cub_file(char const *conf_path);
+void			parseandclose(int g_ret, t_config *c, int tp, char *line);
+int				operate(char const *conf_path);
 int				parse_config(t_game *game,
 					t_config *config, char const *conf_path);
 int				process_except(int *g_ret, char *line,
