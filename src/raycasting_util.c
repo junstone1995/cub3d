@@ -6,7 +6,7 @@
 /*   By: junseole <junseole@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:58:19 by junseole          #+#    #+#             */
-/*   Updated: 2021/11/22 19:23:26 by junseole         ###   ########.fr       */
+/*   Updated: 2021/11/22 19:37:39 by junseole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ double	getCV__V0(int value1, int value2, double stepx)
 {
 	if ((value1 && stepx > 0) || (value2 && stepx < 0))
 		return (stepx * -1);
-	return stepx;
+	return (stepx);
 }
 
 int	getC__10(int value)
