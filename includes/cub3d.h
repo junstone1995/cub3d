@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: junseole <junseole@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 15:32:10 by junseole          #+#    #+#             */
-/*   Updated: 2021/11/22 16:52:01 by namhkim          ###   ########.fr       */
+/*   Updated: 2021/11/22 19:24:37 by junseole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,7 +254,7 @@ void			set_pos(t_pos *pos, double x, double y);
 void			copy_pos(t_pos *pos, t_pos *org);
 
 /*
-** parse1.c parse1_utils.c parse2.c
+** parse1.c parse1_utils.c parse2.c parse2_utils.c
 */
 
 int				is_blank_line(char *line);
@@ -266,6 +266,9 @@ int				parse_config(t_game *game,
 int				process_except(int *g_ret, char *line,
 					t_game *game, t_config *config);
 int				parse_by_type(int ret, t_config *config, int type, char *line);
+int				parse_color(char *line);
+char			*parse_path(char *line);
+int				parse_by_type2(t_config *c, int tp, char *line, int flag);
 
 /*
 ** move.c
@@ -296,7 +299,7 @@ t_pos			cast_vert_ray(t_game *game, t_config c, t_ray *r, double angle);
 void			cast_a_ray(t_game *game, t_ray *ray, double rayangle);
 int				getC_V0(int choice, int value);
 int				getC__11(int value);
-int				getCV__V0(int value1, double value2);
+double			getCV__V0(int value1, int value2, double stepx);
 int				getC__10(int value);
 int				getCV_V0(int choice, int value);
 int				getCCC__11(int value1, int value2, double value3);

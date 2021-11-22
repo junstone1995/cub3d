@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: junseole <junseole@student.42seoul.kr>     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/11/22 16:59:41 by junseole          #+#    #+#              #
+#    Updated: 2021/11/22 18:24:40 by junseole         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME	= cub3d
 
 SRC_NAME = draw.c \
@@ -10,6 +22,7 @@ SRC_NAME = draw.c \
 		move.c \
 		parse1_utils.c \
 		parse1.c \
+		parse2_utils.c \
 		parse2.c \
 		pos.c \
 		raycasting_util.c \

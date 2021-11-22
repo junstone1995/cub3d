@@ -6,7 +6,7 @@
 /*   By: junseole <junseole@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:44:47 by junseole          #+#    #+#             */
-/*   Updated: 2021/11/19 17:28:10 by junseole         ###   ########.fr       */
+/*   Updated: 2021/11/22 19:23:48 by junseole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_pos	cast_horz_ray(t_game *game, t_config c, t_ray *r, double angle)
 	intercept.y += getC_V0(r->isdown, c.tile);
 	intercept.x = game->player.x + (intercept.y - game->player.y) / tan(angle);
 	set_pos(&step, c.tile / tan(angle), c.tile * getC__11(r->isup));
-	(r->isleft && step.x > 0) || getCV__V0(r->isright, step.x);
+	step.x = getCV__V0(r->isleft, r->isright, step.x);
 	set_pos(&next, intercept.x, intercept.y);
 	while (next.x > 0 && next.x < c.width && next.y > 0 && next.y < c.height)
 	{

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: junseole <junseole@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/22 17:01:48 by junseole          #+#    #+#             */
+/*   Updated: 2021/11/22 18:23:06 by junseole         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	parse_resolution(t_config *config, char *line)
@@ -24,7 +36,7 @@ static int	parse_resolution(t_config *config, char *line)
 	return (1);
 }
 
-static char	*parse_path(char *line)
+char	*parse_path(char *line)
 {
 	int		i;
 	char	*buff;
@@ -38,7 +50,7 @@ static char	*parse_path(char *line)
 	return (buff);
 }
 
-static int	parse_color(char *line)
+int	parse_color(char *line)
 {
 	int	i;
 	int	j;
@@ -91,21 +103,20 @@ int	parse_by_type(int ret, t_config *c, int tp, char *line)
 {
 	static char	*temp = "";
 
-	if (tp == C_R){
+	if (tp == C_R)
+	{
 		if (!parse_resolution(c, line))
 			return (free_line(line, 0));
 	}
-	else if ((tp >= C_NO) && (tp <= C_S))
+	else if (tp >= C_NO && tp <= C_S)
 	{
-		c->tex[tp].tex_path = parse_path(line);
-		if (c->tex[tp].tex_path || !(c->tex[tp].tex_path))
+		if (!parse_by_type2(c, tp, line, 1))
 			return (free_line(line, 0));
 	}
 	else if (tp == C_F || tp == C_C)
 	{
-		c->floor_color = parse_color(line);
-		if ((tp == C_F && c->floor_color == -1) || (tp
-				== C_C && (c->ceiling_color = parse_color(line)) == -1))
+		if ((tp == C_F && !parse_by_type2(c, tp, line, 2))
+			|| (tp == C_C && !parse_by_type2(c, tp, line, 3)))
 			return (free_line(line, 0));
 	}
 	else

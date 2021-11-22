@@ -1,50 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting_util.c                                  :+:      :+:    :+:   */
+/*   parse2_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junseole <junseole@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 16:58:19 by junseole          #+#    #+#             */
-/*   Updated: 2021/11/22 19:23:26 by junseole         ###   ########.fr       */
+/*   Created: 2021/11/22 18:24:01 by junseole          #+#    #+#             */
+/*   Updated: 2021/11/22 18:24:05 by junseole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	getC_V0(int choice, int value)
+int	parse_by_type2(t_config *c, int tp, char *line, int flag)
 {
-	if (choice)
+	if (flag == 1)
 	{
-		return (value);
+		if (c->tex[tp].tex_path)
+			return (free_line(line, 0));
+		c->tex[tp].tex_path = parse_path(line);
+		if (!c->tex[tp].tex_path)
+			return (free_line(line, 0));
 	}
-	return (0);
-}
-
-int	getC__11(int value)
-{
-	if (value)
-		return (-1);
+	if (flag == 2)
+	{
+		c->floor_color = parse_color(line);
+		if (c->floor_color == -1)
+			return (0);
+	}
+	if (flag == 3)
+	{
+		c->ceiling_color = parse_color(line);
+		if (c->ceiling_color == -1)
+			return (0);
+	}
 	return (1);
-}
-
-double	getCV__V0(int value1, int value2, double stepx)
-{
-	if ((value1 && stepx > 0) || (value2 && stepx < 0))
-		return (stepx * -1);
-	return stepx;
-}
-
-int	getC__10(int value)
-{
-	if (value)
-		return (-1);
-	return (0);
-}
-
-int	getCV_V0(int choice, int value)
-{
-	if (choice)
-		return (value);
-	return (0);
 }
