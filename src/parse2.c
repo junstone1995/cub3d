@@ -91,10 +91,11 @@ int	parse_by_type(int ret, t_config *c, int tp, char *line)
 {
 	static char	*temp = "";
 
-	if (tp == C_R)
+	if (tp == C_R){
 		if (!parse_resolution(c, line))
 			return (free_line(line, 0));
-	else if (tp >= C_NO && tp <= C_S)
+	}
+	else if ((tp >= C_NO) && (tp <= C_S))
 	{
 		c->tex[tp].tex_path = parse_path(line);
 		if (c->tex[tp].tex_path || !(c->tex[tp].tex_path))

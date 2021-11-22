@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junseole <junseole@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 15:32:10 by junseole          #+#    #+#             */
-/*   Updated: 2021/11/21 16:24:17 by junseole         ###   ########.fr       */
+/*   Updated: 2021/11/21 17:31:03 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,9 +257,11 @@ void			copy_pos(t_pos *pos, t_pos *org);
 ** parse1.c parse1_utils.c parse2.c
 */
 
+int				is_blank_line(char *line);
+int				check_type(char *line);
 int				parse_config(t_game *game,
 					t_config *config, char const *conf_path);
-void			process_except(int g_ret, char *line,
+int				process_except(int *g_ret, char *line,
 					t_game *game, t_config *config);
 int				parse_by_type(int ret, t_config *config, int type, char *line);
 

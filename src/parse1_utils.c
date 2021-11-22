@@ -6,13 +6,13 @@
 /*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 17:37:51 by namhkim           #+#    #+#             */
-/*   Updated: 2021/11/19 17:51:51 by namhkim          ###   ########.fr       */
+/*   Updated: 2021/11/21 17:31:21 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	process_except(int g_ret, char *line,
+int	process_except(int *g_ret, char *line,
 	t_game *game, t_config *config)
 {
 	int	type;
@@ -29,8 +29,9 @@ void	process_except(int g_ret, char *line,
 		}
 		else if (is_blank_line(line) && config->map && g_ret)
 			return (exit_error(game, EXIT_FAILURE, "blank line in the map"));
-		if (!parse_by_type(g_ret, config, type, line))
+		if (!parse_by_type(*g_ret, config, type, line))
 			return (0);
 	}
-	parse_by_type(g_ret, config, type, line);
+	parse_by_type(*g_ret, config, type, line);
+	return (0);
 }
