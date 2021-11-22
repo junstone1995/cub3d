@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: namhkim <namhkim@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 17:11:56 by namhkim           #+#    #+#             */
-/*   Updated: 2021/11/21 17:31:48 by namhkim          ###   ########.fr       */
+/*   Created: 2021/11/22 13:54:56 by namhkim           #+#    #+#             */
+/*   Updated: 2021/11/22 16:40:40 by namhkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	g_fd;
 int	g_ret;
+int	g_type;
 
-static int	is_cub_file(char const *conf_path)
+int	is_cub_file(char const *conf_path)
 {
 	int	ret;
 	int	len;
@@ -28,6 +29,20 @@ static int	is_cub_file(char const *conf_path)
 		return (1);
 	else
 		return (0);
+}
+
+int	is_blank_line(char *line)
+{
+	int		i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (!is_space(line[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 static int	check_map_component(char *line)
@@ -45,7 +60,7 @@ static int	check_map_component(char *line)
 	return (1);
 }
 
-int	check_type(char *line)
+static int	check_type(char *line)
 {
 	if (line[0] == 'R' && line[1] == ' ')
 		return (C_R);
@@ -68,32 +83,30 @@ int	check_type(char *line)
 	return (-1);
 }
 
-int	is_blank_line(char *line)
-{
-	int		i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (!is_space(line[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 int	parse_config(t_game *game, t_config *config, char const *conf_path)
 {
+	int		cmd;
 	char	*line;
 
-	if (!(is_cub_file(conf_path)))
+	cmd = operate(conf_path);
+	if (cmd == 23 || cmd == 24)
 		return (exit_error(game, EXIT_FAILURE, "ERROR\nNOT .CUB EXTENSION\n"));
-	g_fd = open(conf_path, O_RDONLY);
-	if (g_fd < 0)
-		return (exit_error(game, EXIT_FAILURE, "ERROR\nWRONG FILE PATH\n"));
-	g_ret = 1;
 	g_ret = get_next_line(g_fd, &line);
-	process_except(&g_ret, line, game, config);
-	close(g_fd);
+	while (g_ret > 0)
+	{
+		g_type = check_type(line);
+		if (is_blank_line(line) && !(config->map))
+		{
+			free(line);
+			g_ret = get_next_line(g_fd, &line);
+			continue ;
+		}
+		else if (is_blank_line(line) && config->map && g_ret)
+			return (exit_error(game, EXIT_FAILURE, "blank line in the map"));
+		if (!parse_by_type(g_ret, config, g_type, line))
+			return (0);
+		g_ret = get_next_line(g_fd, &line);
+	}
+	parseandclose(g_ret, config, g_type, line);
 	return (1);
 }
