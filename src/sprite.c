@@ -6,7 +6,7 @@
 /*   By: junseole <junseole@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 15:14:08 by junseole          #+#    #+#             */
-/*   Updated: 2021/11/19 16:21:09 by junseole         ###   ########.fr       */
+/*   Updated: 2021/11/22 19:36:33 by junseole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,5 @@ double	angle_min(double first, double second)
 {
 	if (first < second)
 		return (first += 2 * M_PI);
-	return (0);
+	return (first);
 }
