@@ -6,7 +6,7 @@
 /*   By: junseole <junseole@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 16:44:47 by junseole          #+#    #+#             */
-/*   Updated: 2021/11/22 19:23:48 by junseole         ###   ########.fr       */
+/*   Updated: 2021/11/23 22:28:00 by junseole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ t_pos	cast_horz_ray(t_game *game, t_config c, t_ray *r, double angle)
 	t_pos	next;
 
 	intercept.y = floor(game->player.y / c.tile) * c.tile;
-	intercept.y += getC_V0(r->isdown, c.tile);
+	intercept.y += getc_v0(r->isdown, c.tile);
 	intercept.x = game->player.x + (intercept.y - game->player.y) / tan(angle);
-	set_pos(&step, c.tile / tan(angle), c.tile * getC__11(r->isup));
-	step.x = getCV__V0(r->isleft, r->isright, step.x);
+	set_pos(&step, c.tile / tan(angle), c.tile * getc__11(r->isup));
+	step.x = getcv__v0(r->isleft, r->isright, step.x);
 	set_pos(&next, intercept.x, intercept.y);
 	while (next.x > 0 && next.x < c.width && next.y > 0 && next.y < c.height)
 	{
-		set_pos(&tocheck, next.x, next.y + getC__10(r->isup));
+		set_pos(&tocheck, next.x, next.y + getc__10(r->isup));
 		if (is_sprite(tocheck.x, tocheck.y, game)
 			&& !r->sprite.horzhit.x && !r->sprite.horzhit.y)
 			copy_pos(&r->sprite.horzhit, &tocheck);
@@ -50,14 +50,14 @@ t_pos	cast_vert_ray(t_game *game, t_config c, t_ray *r, double angle)
 	t_pos	next;
 
 	intercept.x = floor(game->player.x / c.tile) * c.tile;
-	intercept.x += getCV_V0(r->isright, c.tile);
+	intercept.x += getcv_v0(r->isright, c.tile);
 	intercept.y = game->player.y + (intercept.x - game->player.x) * tan(angle);
-	set_pos(&step, c.tile * getC__11(r->isleft), c.tile * tan(angle));
-	step.y *= getCCC__11(r->isup, r->isdown, step.y);
+	set_pos(&step, c.tile * getc__11(r->isleft), c.tile * tan(angle));
+	step.y *= getccc__11(r->isup, r->isdown, step.y);
 	set_pos(&next, intercept.x, intercept.y);
 	while (next.x > 0 && next.x < c.width && next.y > 0 && next.y < c.height)
 	{
-		set_pos(&tocheck, next.x + getC__10(r->isleft), next.y);
+		set_pos(&tocheck, next.x + getc__10(r->isleft), next.y);
 		if (is_sprite(tocheck.x, tocheck.y, game)
 			&& !r->sprite.verthit.x && !r->sprite.verthit.y)
 			copy_pos(&r->sprite.verthit, &tocheck);

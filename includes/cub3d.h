@@ -6,7 +6,7 @@
 /*   By: junseole <junseole@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 15:32:10 by junseole          #+#    #+#             */
-/*   Updated: 2021/11/22 19:24:37 by junseole         ###   ########.fr       */
+/*   Updated: 2021/11/23 22:27:16 by junseole         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,12 +297,12 @@ double			angle_min(double first, double second);
 t_pos			cast_horz_ray(t_game *game, t_config c, t_ray *r, double angle);
 t_pos			cast_vert_ray(t_game *game, t_config c, t_ray *r, double angle);
 void			cast_a_ray(t_game *game, t_ray *ray, double rayangle);
-int				getC_V0(int choice, int value);
-int				getC__11(int value);
-double			getCV__V0(int value1, int value2, double stepx);
-int				getC__10(int value);
-int				getCV_V0(int choice, int value);
-int				getCCC__11(int value1, int value2, double value3);
+int				getc_v0(int choice, int value);
+int				getc__11(int value);
+double			getcv__v0(int value1, int value2, double stepx);
+int				getc__10(int value);
+int				getcv_v0(int choice, int value);
+int				getccc__11(int value1, int value2, double value3);
 /*
 ** render.c
 */
